@@ -1,6 +1,8 @@
 package dungeon.gui;
 
 import dungeon.engine.GameEngine;
+import dungeon.engine.Player;
+import dungeon.engine.Position;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,9 +19,25 @@ public class GameGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        BorderPane root = FXMLLoader.load(getClass().getResource("game_gui.fxml"));
+        // Create the engine
+        GameEngine engine = new GameEngine(10);
 
-        primaryStage.setScene(new Scene(root, 800, 800));
+        // Create and set the player
+        Player player = new Player(new Position(0, 0));
+        engine.setPlayer(player);
+
+        // Load FXML and get controller
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("game_gui.fxml"));
+        BorderPane root = loader.load();
+        Controller controller = loader.getController();
+        controller.setEngine(engine);
+
+        // Create scene and hook up key handler
+        Scene scene = new Scene(root, 800, 800);
+        scene.setOnKeyPressed(controller::handleKeyPressed);
+
+        // Show stage
+        primaryStage.setScene(scene);
         primaryStage.setTitle("MiniDungeon Game");
         primaryStage.show();
     }

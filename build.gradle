@@ -21,8 +21,7 @@ java {
 }
 
 application {
-    mainModule = 'dungeon.gui'
-    mainClass = 'dungeon.gui.RunGUI'
+    mainClass = 'dungeon.Main'
 }
 
 javafx {
@@ -35,12 +34,8 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
-testing {
-    suites {
-        test {
-            useJUnitJupiter()
-        }
-    }
+test {
+    useJUnitPlatform()
 }
 
 sourceSets.main {

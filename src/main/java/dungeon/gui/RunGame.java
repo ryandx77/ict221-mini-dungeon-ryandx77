@@ -10,3 +10,4 @@ public class RunGame {
         GameGUI.main(args);
     }
 }
+
