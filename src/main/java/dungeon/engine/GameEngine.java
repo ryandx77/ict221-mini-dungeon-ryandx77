@@ -56,7 +56,7 @@ public class GameEngine {
         placeContent(new Position(8, 0), new Wall());
         placeContent(new Position(5, 3), new Wall());
 
-        placeContent(new Position(7, 7), new Ladder());
+        placeContent(new Position(0, 6), new Ladder());
 
 
         // Create and position the player at the starting cell
@@ -131,7 +131,6 @@ public class GameEngine {
     public void advanceToLevel(int newLevel) {
         this.currentLevel = newLevel;
         log("Level set to " + newLevel);
-        // TODO: clear the board, add new content, update difficulty, etc.
     }
 
     /**
